@@ -55,6 +55,45 @@ function populateCurrencySelects(rates) {
     // Perform initial calculations
     calculateCurrencyToCurrency();
 }
+const searchFromCurrencyInput = document.getElementById("search-from-currency");
+const searchToCurrencyInput = document.getElementById("search-to-currency");
+
+// Function to filter dropdown options
+function filterCurrencyOptions(searchInput, dropdown, rates) {
+    const query = searchInput.value.toLowerCase();
+    dropdown.innerHTML = ""; // Clear existing options
+
+    Object.keys(rates).forEach(currency => {
+        if (currency.toLowerCase().includes(query) || getCountryNameByCurrency(currency).toLowerCase().includes(query)) {
+            const option = document.createElement("option");
+            option.value = currency;
+            option.textContent = currency;
+            dropdown.appendChild(option);
+        }
+    });
+
+    if (dropdown.options.length > 0) {
+        dropdown.value = dropdown.options[0].value; // Set the first option as selected
+    }
+
+    calculateCurrencyToCurrency(); // Recalculate conversion with filtered dropdown
+}
+
+// Attach event listeners to search inputs
+searchFromCurrencyInput.addEventListener("input", () => {
+    filterCurrencyOptions(searchFromCurrencyInput, fromCurrencySelect, exchangeRates);
+});
+
+searchToCurrencyInput.addEventListener("input", () => {
+    filterCurrencyOptions(searchToCurrencyInput, toCurrencySelect, exchangeRates);
+});
+
+// Update the `populateCurrencySelects` function to allow dynamic filtering
+function populateCurrencySelects(rates) {
+    filterCurrencyOptions(searchFromCurrencyInput, fromCurrencySelect, rates);
+    filterCurrencyOptions(searchToCurrencyInput, toCurrencySelect, rates);
+}
+
 // Search input element
 const searchInput = document.getElementById("searchcurrency");
 // Add event listener for search input
@@ -262,13 +301,14 @@ function getCountryNameByCurrency(currency) {
 
 function calculateCurrencyToCurrency() {
     const fromCurrency = fromCurrencySelect.value;
+    
     const toCurrency = toCurrencySelect.value;
     const amount = parseFloat(amountInput.value);
 
     if (exchangeRates[fromCurrency] && exchangeRates[toCurrency]) {
         const rate = exchangeRates[toCurrency] / exchangeRates[fromCurrency];
-        const convertedAmount = (amount * rate).toFixed(2);
-        currencyConvertedAmount.textContent = convertedAmount;
+        const convertedAmount = (amount * rate).toFixed(2) || 0 ;
+        currencyConvertedAmount.innerHTML = `<b>${amount} ${fromCurrency}</b> Equal to <b> ${convertedAmount} ${toCurrency}</b>`;
     }
 }
 

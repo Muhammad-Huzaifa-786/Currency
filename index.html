@@ -44,12 +44,19 @@
             font-size: 16px;
             width: 100%;
             max-width: 300px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 2px solid grey;
         }
 
         .form-section input {
             width: 276px;
             max-width: 90%;
+        }
+
+        .form-section select {
+            border: 4px solid grey;
+            border-radius: 10px;
         }
 
         table {
@@ -89,6 +96,8 @@
             font-size: large;
             width: 276px !important;
             max-width: 90%;
+            border-radius: 5px;
+            border: 2px solid grey;
         }
 
         /* Responsive Design */
@@ -101,6 +110,7 @@
                 font-size: 14px;
             }
         }
+
     </style>
 </head>
 
@@ -115,18 +125,31 @@
         <div class="form-section">
             <!-- Currency to Currency Conversion -->
             <div>
-                <label for="from-currency">From Currency:</label><br>
-                <select id="from-currency"></select><br>
-                <label for="to-currency">To Currency:</label><br>
-                <select id="to-currency"></select><br>
                 <label for="amount">Amount:</label><br>
                 <input type="number" id="amount" value="1" /><br>
+                <div>
+                    <label for="search-from-currency">Search From Currency:</label><br>
+                    <input type="text" id="search-from-currency" placeholder="Search..." /><br>
+                    <label for="from-currency">From Currency:</label><br>
+                    <select id="from-currency"></select><br>
+                </div>
+
+                <div>
+                    <label for="search-to-currency">Search To Currency:</label><br>
+                    <input type="text" id="search-to-currency" placeholder="Search..." /><br>
+                    <label for="to-currency">To Currency:</label><br>
+                    <select id="to-currency"></select><br>
+                </div>
+
+
                 <p>Converted Amount: <span id="currency-converted-amount">0</span></p>
             </div>
-        </div>
+        </div><br><br>
         <hr>
-        <hr>
-        <input placeholder="Search" type="text" id="searchcurrency">
+        <hr><br><br>
+        <input placeholder="Search Country Or Currency" type="text" id="searchcurrency"><br><br>
+      
+
         <table id="ratesTable">
             <thead>
                 <tr>
