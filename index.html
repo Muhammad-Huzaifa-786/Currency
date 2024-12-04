@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="./images.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange Rates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: grey;
+            color: white;
+            padding: 10px 0 10px 0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            /* padding: 20px; */
+        }
+
+        .form-section label {
+            font-size: 16px;
+        }
+
+        .form-section select,
+        .form-section input {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 10px;
+        }
+
+        .form-section input {
+            width: 276px;
+            max-width: 90%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px 2px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: grey;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .info {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .date-time {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #searchcurrency {
+            padding: 10px 10px 10px 10px;
+            font-size: large;
+            width: 276px !important;
+            max-width: 90%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+
+
+            table,
+            th,
+            td {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container">
+
+        <div class="navbar">
+            <p>Live Currency Exchange Rates</p>
+        </div>
+        <div class="form-section">
+            <!-- Currency to Currency Conversion -->
+            <div>
+                <label for="from-currency">From Currency:</label><br>
+                <select id="from-currency"></select><br>
+                <label for="to-currency">To Currency:</label><br>
+                <select id="to-currency"></select><br>
+                <label for="amount">Amount:</label><br>
+                <input type="number" id="amount" value="1" /><br>
+                <p>Converted Amount: <span id="currency-converted-amount">0</span></p>
+            </div>
+        </div>
+        <hr>
+        <hr>
+        <input placeholder="Search" type="text" id="searchcurrency">
+        <table id="ratesTable">
+            <thead>
+                <tr>
+                    <th>Currency Code</th>
+                    <th>Exchange Rate (Base: USD)</th>
+                    <th>Country Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rates will be populated dynamically -->
+            </tbody>
+        </table>
+
+        <div class="date-time">
+            <p id="current-time"></p>
+        </div>
+
+        <div class="info">
+            <p>Data provided by <a href="https://www.exchangerate-api.com/docs" target="_blank">ExchangeRate-API</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
